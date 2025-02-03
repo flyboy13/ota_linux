@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
 
     _updaterController = DesktopUpdaterController(
       appArchiveUrl: Uri.parse(
-        "https://tmpfiles.org/dl/20241180/app-archive.json",
+        "https://raw.githubusercontent.com/flyboy13/ota_linux/refs/heads/master/lib/app-archive.json",
       ),
       localization: const DesktopUpdateLocalization(
         updateAvailableText: "Update available",
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> _checkForUpdates() async {
     try {
-      await _updaterController.checkVersion();
+      // await _updaterController.checkVersion();
       if (_updaterController.appVersion != _currentVersion) {
         setState(() {
           _newVersion = _updaterController.appVersion;
@@ -104,10 +104,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     if (_changelog != null) Text("Changelog: $_changelog"),
                     const SizedBox(height: 10),
-                    ElevatedButton(
-                      onPressed: _startUpdate,
-                      child: const Text("Download & Update"),
-                    ),
+                    ElevatedButton(onPressed: _startUpdate, child: const Text("Download & Update")),
                   ],
                 )
               else
